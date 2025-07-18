@@ -6,7 +6,7 @@
   import GuidelineSlider from './components/GuidelineSlider.svelte';
   import VideoAssetCard from './components/VideoAssetCard.svelte';
   import PatternGenerator from './components/PatternGenerator.svelte';
-  import { assets } from './lib/data/assets.svelte';
+  import { assets, siteInfo } from './lib/data/assets.svelte';
   import { getDimensions } from './lib/utils/assetProcessor';
   import { konami } from './lib/actions/konami';
   import { createAndDownloadZip } from './lib/services/download';
@@ -25,6 +25,7 @@
   import PatternPreview from './components/asset-card/previews/PatternPreview.svelte';
   import FormatSelector from './components/asset-card/controls/FormatSelector.svelte';
   import EditButton from './components/asset-card/controls/EditButton.svelte';
+  import Footer from './components/Footer.svelte';
 
   let konamiActive = $state(false);
   let isDownloading = $state(false);
@@ -362,6 +363,8 @@
       </div>
     </section>
   </main>
+
+  <Footer info={siteInfo} />
 </div>
 
 {#if store.editingLogo}

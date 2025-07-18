@@ -268,3 +268,23 @@ export const assets = $state({
     ],
   },
 });
+
+export const siteInfo = {
+  companyName: 'AdsCompass',
+  companyUrl: 'https://adscompass.com',
+  copyrightYear: new Date().getFullYear(),
+  developer: {
+    name: 'Sudorgin Daniil',
+    url: 'https://github.com/Zilusion',
+  },
+  socials: [
+    { name: 'instagram', url: 'https://www.instagram.com/adscompass/' },
+    { name: 'twitter', url: 'https://x.com/ads_compass' },
+    {
+      name: 'youtube',
+      url: 'https://www.youtube.com/channel/UCZVbg0wWOLZcHrH-RIRe9XQ',
+    },
+    { name: 'facebook', url: 'https://www.facebook.com/adscompass' },
+    { name: 'linkedin', url: 'https://www.linkedin.com/company/adscompass/' },
+  ],
+};
