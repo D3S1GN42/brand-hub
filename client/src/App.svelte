@@ -20,8 +20,14 @@
   } from './lib/stores/store.svelte';
   import AboutSection from './components/AboutSection.svelte';
   import ContactCard from './components/ContactCard.svelte';
+  import AssetCard from './components/asset-card/AssetCard.svelte';
+  import LogoPreview from './components/asset-card/previews/LogoPreview.svelte';
+  import PatternPreview from './components/asset-card/previews/PatternPreview.svelte';
+  import FormatSelector from './components/asset-card/controls/FormatSelector.svelte';
+  import EditButton from './components/asset-card/controls/EditButton.svelte';
 
   let konamiActive = $state(false);
+  let isDownloading = $state(false);
 
   function activateRaveMode() {
     console.log(
@@ -53,20 +59,24 @@
     assets.logos = assets.logos;
   });
 
-  function handleDownload() {
-    createAndDownloadZip({
-      selectedAssets: store.selectedAssets,
-      allAssets: assets,
-      customAssets: store.customAssets,
-      customPatterns: store.customPatterns,
-    });
+  async function handleDownload() {
+    isDownloading = true;
+    try {
+      await createAndDownloadZip({
+        selectedAssets: store.selectedAssets,
+        allAssets: assets,
+        customAssets: store.customAssets,
+        customPatterns: store.customPatterns,
+      });
+    } catch (error) {
+      console.error('Произошла ошибка во время скачивания архива:', error);
+    } finally {
+      let timeout = setTimeout(() => {
+        isDownloading = false;
+        clearTimeout(timeout);
+      }, 500);
+    }
   }
-
-  import AssetCard from './components/asset-card/AssetCard.svelte';
-  import LogoPreview from './components/asset-card/previews/LogoPreview.svelte';
-  import PatternPreview from './components/asset-card/previews/PatternPreview.svelte';
-  import FormatSelector from './components/asset-card/controls/FormatSelector.svelte';
-  import EditButton from './components/asset-card/controls/EditButton.svelte';
 
   function getAvailableFormats(asset) {
     if (asset.assetType === 'logo') {
@@ -108,14 +118,24 @@
 		focus-visible:ring-offset-2
 		focus-visible:ring-offset-[#08090a]
 		active:translate-y-0
-		active:bg-[#434a9d]
+		active:bg-[#434d9d]
 		active:duration-75
-	"
+        disabled:cursor-not-allowed disabled:bg-gray-500 disabled:hover:translate-y-0"
       onclick={handleDownload}
+      disabled={isDownloading}
     >
-      {store.selectedAssets.length
-        ? `Скачать выбранное (${store.selectedAssets.length})`
-        : `Скачать все материалы`}
+      {#if isDownloading}
+        <div class="flex items-center gap-2">
+          <div
+            class="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"
+          ></div>
+          <span>Генерация архива...</span>
+        </div>
+      {:else}
+        {store.selectedAssets.length
+          ? `Скачать выбранное (${store.selectedAssets.length})`
+          : `Скачать все материалы`}
+      {/if}
     </button>
   </div>
 
