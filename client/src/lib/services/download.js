@@ -1,6 +1,7 @@
 import JSZip from 'jszip';
 import { convertToFormat, extractInnerSvg } from '../utils/assetProcessor';
 import convert from 'color-convert';
+import { encode } from 'ase-utils';
 
 function determineAssetsToDownload({
   selectedAssets,
@@ -256,22 +257,59 @@ async function processVideo(assetItem, { allAssets, zipFolders }) {
 }
 
 async function addPaletteFiles({ allAssets, zipFolders }) {
-  let txtContent = 'Фирменные цвета AdsCompass\n\n';
-  allAssets.colors.forEach((group) => {
-    txtContent += `--- ${group.groupName} ---\n`;
-    group.items.forEach((color) => {
-      const hex = color.hex.toUpperCase();
-      const rgb = convert.hex.rgb(hex.replace('#', '')).join(', ');
-      const cmyk = convert.hex.cmyk(hex.replace('#', '')).join('%, ') + '%';
-      const hsl = convert.hex.hsl(hex.replace('#', '')).join(', ');
-      txtContent += `${color.name || hex}:\n`;
-      txtContent += `  HEX: ${hex}\n`;
-      txtContent += `  RGB: ${rgb}\n`;
-      txtContent += `  CMYK: ${cmyk}\n`;
-      txtContent += `  HSL: ${hsl}\n\n`;
+  try {
+    const allColors = allAssets.colors.flatMap((group) => group.items);
+    if (allColors.length === 0) return;
+
+    const colorsArray = allColors.map((color) => ({
+      name: color.name || color.hex,
+      model: 'RGB',
+      color: convert.hex.rgb(color.hex.replace('#', '')).map((c) => c / 255),
+      type: 'global',
+    }));
+
+    const aseDataObject = {
+      version: '1.0',
+      groups: [],
+      colors: colorsArray,
+    };
+
+    const aseBuffer = encode(aseDataObject);
+    zipFolders.palettes.file('palette.ase', aseBuffer);
+
+    let cssContent = ':root {\n';
+    allColors.forEach((color) => {
+      const varName = `--color${color.hex
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, '-')
+        .replace(/-+/g, '-')}`;
+      cssContent += `  ${varName}: ${color.hex};\n`;
     });
-  });
-  zipFolders.palettes.file('palette.txt', txtContent);
+    cssContent += '}';
+    zipFolders.palettes.file('palette.css', cssContent);
+
+    const jsonContent = JSON.stringify(allAssets.colors, null, 2);
+    zipFolders.palettes.file('palette.json', jsonContent);
+
+    let txtContent = 'Фирменные цвета AdsCompass\n\n';
+    allAssets.colors.forEach((group) => {
+      txtContent += `--- ${group.groupName} ---\n`;
+      group.items.forEach((color) => {
+        const hex = color.hex.toUpperCase();
+        const rgb = convert.hex.rgb(hex.replace('#', '')).join(', ');
+        const cmyk = convert.hex.cmyk(hex.replace('#', '')).join('%, ') + '%';
+        const hsl = convert.hex.hsl(hex.replace('#', ''));
+        txtContent += `${color.name || hex}:\n`;
+        txtContent += `  HEX:  ${hex}\n`;
+        txtContent += `  RGB:  rgb(${rgb})\n`;
+        txtContent += `  CMYK: cmyk(${cmyk})\n`;
+        txtContent += `  HSL:  hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)\n\n`;
+      });
+    });
+    zipFolders.palettes.file('palette.txt', txtContent);
+  } catch (error) {
+    console.error('Ошибка при генерации файлов палитры:', error);
+  }
 }
 
 export async function createAndDownloadZip({

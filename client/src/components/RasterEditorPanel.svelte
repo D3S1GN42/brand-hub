@@ -78,7 +78,11 @@
         drawCanvas();
       };
       img.onerror = (e) => {
-        console.error('Failed to load raster image:', logo.url, e);
+        console.error(
+          'Не удалось загрузить растровое изображение:',
+          logo.url,
+          e,
+        );
         rasterImage = null;
         editor.canvasWidth = logo.width || 400;
         editor.canvasHeight = logo.height || 300;
@@ -236,7 +240,7 @@
 
   export function getExportData() {
     if (!canvasElement) {
-      console.error('Canvas element not available for export.');
+      console.error('Элемент canvas не доступен для экспорта.');
       return null;
     }
     const dataUrl = canvasElement.toDataURL(

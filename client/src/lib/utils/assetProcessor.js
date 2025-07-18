@@ -14,12 +14,12 @@ export async function getDimensions(logo) {
         return { width, height };
       } else {
         console.warn(
-          `SVG ${logo.url} has no viewBox. Returning default dimensions.`,
+          `SVG ${logo.url} не имеет viewBox. Возвращаются стандартные размеры.`,
         );
         return { width: 400, height: 300 };
       }
     } catch (error) {
-      console.error('Error loading SVG dimensions or viewBox:', error);
+      console.error('Ошибка загрузки размеров SVG или viewBox:', error);
       return { width: 400, height: 300 };
     }
   } else if (['png', 'jpg'].includes(extension)) {
@@ -29,14 +29,14 @@ export async function getDimensions(logo) {
         resolve({ width: img.width, height: img.height });
       };
       img.onerror = (e) => {
-        console.error(`Failed to load raster image: ${logo.url}`, e);
+        console.error(`Ошибка загрузки растрового изображения: ${logo.url}`, e);
         resolve({ width: 400, height: 300 });
       };
       img.src = logo.url;
     });
   } else {
     console.warn(
-      `Unsupported logo extension: ${extension}. Returning default dimensions.`,
+      `Неподдерживаемое расширение логотипа: ${extension}. Возвращаем размеры по умолчанию.`,
     );
     return { width: 400, height: 300 };
   }
