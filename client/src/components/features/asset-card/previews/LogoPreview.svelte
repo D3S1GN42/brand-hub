@@ -1,6 +1,4 @@
-<!-- src/components/asset-card/previews/LogoPreview.svelte -->
 <script>
-  // Этот компонент принимает как кастомный, так и оригинальный ассет
   let { asset, type = 'original', baseLogo = null } = $props();
 
   const customPreviewStyle = $derived(
@@ -32,7 +30,6 @@
       class="pointer-events-none h-full w-full select-none object-contain"
     />
   {:else if asset.extension === 'svg'}
-    <!-- Превью для кастомного SVG (использует `baseLogo.url` из asset) -->
     <svg
       class="h-full w-full"
       viewBox="0 0 {asset.canvasWidth} {asset.canvasHeight}"
@@ -52,7 +49,6 @@
       </g>
     </svg>
   {:else if ['png', 'jpg'].includes(asset.extension)}
-    <!-- Превью для кастомного растрового лого -->
     <img
       src={asset.dataUrl}
       alt={asset.name || 'Кастомный логотип'}

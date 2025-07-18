@@ -1,5 +1,5 @@
 <script>
-  import { gestures } from '../lib/actions/gestures';
+  import { gestures } from '../../lib/actions/gestures';
 
   let { imageDo, imageDont, title, description } = $props();
 

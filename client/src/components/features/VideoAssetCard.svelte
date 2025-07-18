@@ -1,5 +1,5 @@
 <script>
-  import Icon from './Icon.svelte';
+  import Icon from '../shared/ui/Icon.svelte';
 
   let { video, selectedFormats = [], onToggle } = $props();
 

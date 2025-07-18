@@ -1,11 +1,11 @@
 <script>
-  import EditorModal from './components/EditorModal.svelte';
-  import ColorCard from './components/ColorCard.svelte';
-  import TypographyPlayground from './components/TypographyPlayground.svelte';
+  import EditorModal from './components/features/logo-editor/EditorModal.svelte';
+  import ColorCard from './components/features/ColorCard.svelte';
+  import TypographyPlayground from './components/features/TypographyPlayground.svelte';
   import { onMount } from 'svelte';
-  import GuidelineSlider from './components/GuidelineSlider.svelte';
-  import VideoAssetCard from './components/VideoAssetCard.svelte';
-  import PatternGenerator from './components/PatternGenerator.svelte';
+  import GuidelineSlider from './components/features/GuidelineSlider.svelte';
+  import VideoAssetCard from './components/features/VideoAssetCard.svelte';
+  import PatternGenerator from './components/features/PatternGenerator.svelte';
   import { assets, siteInfo } from './lib/data/assets.svelte';
   import { getDimensions } from './lib/utils/assetProcessor';
   import { konami } from './lib/actions/konami';
@@ -18,14 +18,14 @@
     changeAssetFormat,
     changeVideoFormat,
   } from './lib/stores/store.svelte';
-  import AboutSection from './components/AboutSection.svelte';
-  import ContactCard from './components/ContactCard.svelte';
-  import AssetCard from './components/asset-card/AssetCard.svelte';
-  import LogoPreview from './components/asset-card/previews/LogoPreview.svelte';
-  import PatternPreview from './components/asset-card/previews/PatternPreview.svelte';
-  import FormatSelector from './components/asset-card/controls/FormatSelector.svelte';
-  import EditButton from './components/asset-card/controls/EditButton.svelte';
-  import Footer from './components/Footer.svelte';
+  import AboutSection from './components/shared/layout/AboutSection.svelte';
+  import ContactCard from './components/shared/layout/ContactCard.svelte';
+  import AssetCard from './components/features/asset-card/AssetCard.svelte';
+  import LogoPreview from './components/features/asset-card/previews/LogoPreview.svelte';
+  import PatternPreview from './components/features/asset-card/previews/PatternPreview.svelte';
+  import FormatSelector from './components/features/asset-card/controls/FormatSelector.svelte';
+  import EditButton from './components/features/asset-card/controls/EditButton.svelte';
+  import Footer from './components/shared/layout/Footer.svelte';
 
   let konamiActive = $state(false);
   let isDownloading = $state(false);

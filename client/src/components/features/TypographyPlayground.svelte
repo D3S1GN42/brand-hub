@@ -1,5 +1,5 @@
 <script>
-  import { copyToClipboard } from '../lib/utils/copy';
+  import { copyToClipboard } from '../../lib/utils/copy';
 
   let { styles } = $props();
 

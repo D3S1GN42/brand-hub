@@ -1,5 +1,5 @@
 <script>
-  import { getLumaClass } from '../../../lib/utils/color.js';
+  import { getLumaClass } from '../../../../lib/utils/color';
 
   let {
     asset,

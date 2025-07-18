@@ -1,7 +1,7 @@
 <script>
-  import Icon from './Icon.svelte';
-  import RasterEditorPanel from './RasterEditorPanel.svelte';
-  import VectorEditorPanel from './VectorEditorPanel.svelte';
+  import Icon from '../../shared/ui/Icon.svelte';
+  import RasterEditorPanel from './panels/RasterEditorPanel.svelte';
+  import VectorEditorPanel from './panels/VectorEditorPanel.svelte';
   let { logo, onSave, onClose } = $props();
 
   let dialogElement;

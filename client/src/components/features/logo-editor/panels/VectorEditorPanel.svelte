@@ -1,100 +1,15 @@
 <script>
-  import { gestures } from '../lib/actions/gestures';
-
   let { editor = $bindable(), logo } = $props();
+  import { gestures } from '../../../../lib/actions/gestures';
 
   let panState = $state(null);
   let rotateState = $state(null);
   let resizeState = $state(null);
-
-  const canvasDrawState = $derived({
-    width: editor.canvasWidth,
-    height: editor.canvasHeight,
-    logoX: editor.logoX,
-    logoY: editor.logoY,
-    scale: editor.logoScale,
-    rotate: editor.logoRotate,
-  });
-
-  let canvasElement;
-  let ctx;
-  let rasterImage = null;
-
-  const dpr = window.devicePixelRatio || 1;
-  const ZOOM_SENSITIVITY = 0.001;
-
-  const originalRasterAspectRatio = $derived.by(() => {
-    if (logo && logo.height > 0) {
-      return logo.width / logo.height;
+  let aspectRatio = $derived.by(() => {
+    if (editor.canvasHeight > 0) {
+      return editor.canvasWidth / editor.canvasHeight;
     }
     return 1;
-  });
-
-  function drawCanvas() {
-    if (!ctx || !rasterImage) return;
-
-    canvasElement.width = editor.canvasWidth * dpr;
-    canvasElement.height = editor.canvasHeight * dpr;
-
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    ctx.clearRect(0, 0, editor.canvasWidth, editor.canvasHeight);
-
-    ctx.save();
-
-    ctx.translate(editor.logoX, editor.logoY);
-    ctx.rotate((editor.logoRotate * Math.PI) / 180);
-    ctx.scale(editor.logoScale, editor.logoScale);
-
-    ctx.drawImage(
-      rasterImage,
-      -rasterImage.width / 2,
-      -rasterImage.height / 2,
-      rasterImage.width,
-      rasterImage.height,
-    );
-
-    ctx.restore();
-  }
-
-  $effect(() => {
-    if (canvasElement && logo && ['png', 'jpg'].includes(logo.extension)) {
-      ctx = canvasElement.getContext('2d');
-      const img = new Image();
-      img.onload = () => {
-        rasterImage = img;
-        if (
-          editor.canvasWidth === 0 ||
-          editor.canvasHeight === 0 ||
-          (editor.canvasWidth === 512 && editor.canvasHeight === 384)
-        ) {
-          editor.canvasWidth = img.width;
-          editor.canvasHeight = img.height;
-          editor.logoX = img.width / 2;
-          editor.logoY = img.height / 2;
-          editor.logoScale = 1;
-          editor.logoRotate = 0;
-        }
-        drawCanvas();
-      };
-      img.onerror = (e) => {
-        console.error(
-          'Не удалось загрузить растровое изображение:',
-          logo.url,
-          e,
-        );
-        rasterImage = null;
-        editor.canvasWidth = logo.width || 400;
-        editor.canvasHeight = logo.height || 300;
-        drawCanvas();
-      };
-      img.src = logo.url;
-    }
-  });
-
-  $effect(() => {
-    canvasDrawState;
-    drawCanvas();
   });
 
   function handlePanStart(event) {
@@ -109,6 +24,7 @@
 
   function handlePan(event) {
     if (!panState) return;
+
     const screenDeltaX = event.detail.x - panState.initialPointerX;
     const screenDeltaY = event.detail.y - panState.initialPointerY;
 
@@ -125,6 +41,7 @@
           }
         }
       }
+
       if (panState.axisLock) {
         if (panState.axisLock.axis === 'x') {
           finalX = panState.axisLock.position;
@@ -135,6 +52,7 @@
     } else {
       panState.axisLock = null;
     }
+
     editor.logoX = finalX;
     editor.logoY = finalY;
   }
@@ -170,8 +88,8 @@
       case 'left': {
         const widthChange = (edge === 'right' ? dx : -dx) * 2;
         newWidth = resizeState.initialCanvasWidth + widthChange;
-        if (editor.keepAspectRatio && originalRasterAspectRatio > 0) {
-          newHeight = newWidth / originalRasterAspectRatio;
+        if (editor.keepAspectRatio && aspectRatio > 0) {
+          newHeight = newWidth / aspectRatio;
         }
         if (edge === 'left') {
           logoDeltaX = -dx * 2;
@@ -183,8 +101,8 @@
       case 'top': {
         const heightChange = (edge === 'bottom' ? dy : -dy) * 2;
         newHeight = resizeState.initialCanvasHeight + heightChange;
-        if (editor.keepAspectRatio && originalRasterAspectRatio > 0) {
-          newWidth = newHeight * originalRasterAspectRatio;
+        if (editor.keepAspectRatio && aspectRatio > 0) {
+          newWidth = newHeight * aspectRatio;
         }
         if (edge === 'top') {
           logoDeltaY = -dy * 2;
@@ -203,18 +121,28 @@
     resizeState = null;
   }
 
+  function wrapAngle(angle) {
+    return ((((angle + 180) % 360) + 360) % 360) - 180;
+  }
+
   function handleZoom(event) {
     event.preventDefault();
     if (event.detail.shiftKey) {
       const rotateFactor = event.detail.deltaY * 0.1;
       let newRotate = editor.logoRotate + rotateFactor;
-      editor.logoRotate = ((((newRotate + 180) % 360) + 360) % 360) - 180;
+      editor.logoRotate = wrapAngle(newRotate);
     } else {
-      const zoomFactor = 1 - event.detail.deltaY * ZOOM_SENSITIVITY;
+      const zoomFactor = 1 - event.detail.deltaY * 0.001;
       let newScale = editor.logoScale * zoomFactor;
       editor.logoScale = Math.max(0.1, Math.min(newScale, 5));
     }
   }
+
+  const logoTransform = $derived(
+    `translate(${editor.logoX}, ${editor.logoY}) rotate(${editor.logoRotate}) scale(${
+      editor.logoScale
+    }) translate(-${logo.width / 2}, -${logo.height / 2})`,
+  );
 
   function handlePinch(event) {
     event.preventDefault();
@@ -234,23 +162,17 @@
   }
 
   function handleRotateEnd() {
-    editor.logoRotate = ((((editor.logoRotate + 180) % 360) + 360) % 360) - 180;
+    editor.logoRotate = wrapAngle(editor.logoRotate);
     rotateState = null;
   }
 
   export function getExportData() {
-    if (!canvasElement) {
-      console.error('Элемент canvas не доступен для экспорта.');
-      return null;
-    }
-    const dataUrl = canvasElement.toDataURL(
-      `image/${logo.extension === 'jpg' ? 'jpeg' : 'png'}`,
-      1.0,
-    );
-
     return {
-      dataUrl: dataUrl,
-      extension: logo.extension,
+      originalSvgDimensions: {
+        width: logo.width,
+        height: logo.height,
+      },
+      extension: 'svg',
     };
   }
 </script>
@@ -259,30 +181,35 @@
   class="relative touch-none"
   style="width: {editor.canvasWidth}px; height: {editor.canvasHeight}px; max-width: 100%; max-height: 100%;"
 >
-  <canvas
-    bind:this={canvasElement}
+  <svg
     class="h-full w-full border border-dashed border-white/20"
     style="background-color: {logo?.background};"
-    width={editor.canvasWidth * dpr}
-    height={editor.canvasHeight * dpr}
-  ></canvas>
-
-  <rect
-    use:gestures
-    onpanstart={handlePanStart}
-    onpan={handlePan}
-    onpanend={handlePanEnd}
-    onzoom={handleZoom}
-    onpinch={handlePinch}
-    onrotatestart={handleRotateStart}
-    onrotate={handleRotate}
-    onrotateend={handleRotateEnd}
-    width="100%"
-    height="100%"
-    fill="transparent"
-    class="absolute inset-0"
-    style="pointer-events: auto;"
-  ></rect>
+    viewBox="0 0 {editor.canvasWidth} {editor.canvasHeight}"
+  >
+    <rect
+      use:gestures
+      onpanstart={handlePanStart}
+      onpan={handlePan}
+      onpanend={handlePanEnd}
+      onzoom={handleZoom}
+      onpinch={handlePinch}
+      onrotatestart={handleRotateStart}
+      onrotate={handleRotate}
+      onrotateend={handleRotateEnd}
+      width={editor.canvasWidth}
+      height={editor.canvasHeight}
+      fill="transparent"
+    />
+    <g transform={logoTransform} class="pointer-events-none">
+      <image
+        href={logo?.url}
+        x="0"
+        y="0"
+        width={logo?.width}
+        height={logo?.height}
+      />
+    </g>
+  </svg>
 
   <div
     use:gestures

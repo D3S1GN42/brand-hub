@@ -1,9 +1,9 @@
 <script>
-  import { gestures } from '../lib/actions/gestures.js';
+  import { gestures } from '../../lib/actions/gestures.js';
   import convert from 'color-convert';
-  import Icon from './Icon.svelte';
-  import { copyToClipboard } from '../lib/utils/copy.js';
-  import { getLumaClass } from '../lib/utils/color.js';
+  import Icon from '../shared/ui/Icon.svelte';
+  import { copyToClipboard } from '../../lib/utils/copy.js';
+  import { getLumaClass } from '../../lib/utils/color.js';
 
   let { color } = $props();
   let copied = $state(false);
