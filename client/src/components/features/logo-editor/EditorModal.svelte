@@ -205,6 +205,7 @@ focus-visible:outline-2"
                 <label for="rotate-slider" class="text-xs">Поворот</label>
                 <div class="flex items-center justify-between">
                   <input
+                    id="rotate-slider"
                     type="number"
                     bind:value={editor.logoRotate}
                     min="-180"
