@@ -124,7 +124,7 @@
 
     <button
       onclick={handleSave}
-      class="mt-2 w-full rounded-md bg-white/10 py-2 text-center font-semibold outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:bg-white/20 focus-visible:outline-2"
+      class="mt-2 w-full rounded-md bg-white/10 py-2 text-center font-semibold outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:bg-white/20 focus-visible:outline-2 active:scale-95 active:duration-75"
     >
       Добавить в загрузку
     </button>
