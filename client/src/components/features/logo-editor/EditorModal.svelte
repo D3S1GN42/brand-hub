@@ -84,8 +84,10 @@
       class="flex shrink-0 items-center justify-between border-b border-white/10 p-4"
     >
       <h3 class="text-lg font-semibold">Настройка: {logo?.name}</h3>
-      <button onclick={handleClose} class="rounded-full p-2 hover:bg-white/10"
-        ><Icon name="close" /></button
+      <button
+        onclick={handleClose}
+        class="rounded-full p-2 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:bg-white/10
+focus-visible:outline-2"><Icon name="close" /></button
       >
     </header>
 
@@ -111,7 +113,7 @@
         {/if}
       </div>
 
-      <aside class="flex flex-col gap-5 overflow-y-auto pr-2 text-sm">
+      <aside class="flex flex-col gap-5 pr-2 text-sm">
         <div>
           <h4 class="mb-2 font-bold">Холст</h4>
           <div class="space-y-1.5 text-xs">
@@ -125,7 +127,8 @@
                   name="canvas-width"
                   id="canvas-width"
                   bind:value={editor.canvasWidth}
-                  class="w-full rounded border border-white/20 bg-transparent px-2 py-1 text-white"
+                  class="w-full rounded border border-white/20 bg-transparent px-2 py-1 text-white outline-offset-2 outline-[#5e6ad2] transition-all duration-300
+focus-visible:outline-2"
                 />
                 <span class="text-white/60">px</span>
               </div>
@@ -140,7 +143,8 @@
                   name="canvas-height"
                   id="canvas-height"
                   bind:value={editor.canvasHeight}
-                  class="w-full rounded border border-white/20 bg-transparent px-2 py-1 text-white"
+                  class="w-full rounded border border-white/20 bg-transparent px-2 py-1 text-white outline-offset-2 outline-[#5e6ad2] transition-all duration-300
+focus-visible:outline-2"
                 />
                 <span class="text-white/60">px</span>
               </div>
@@ -153,7 +157,8 @@
                 id="aspect-ratio-lock"
                 type="checkbox"
                 bind:checked={editor.keepAspectRatio}
-                class="h-4 w-4"
+                class="h-4 w-4 outline-offset-2 outline-[#5e6ad2] transition-all duration-300
+focus-visible:outline-2"
               />
             </div>
           </div>
@@ -177,7 +182,8 @@
                     max="5"
                     step="0.1"
                     bind:value={editor.logoScale}
-                    class="w-full rounded border border-white/20 bg-transparent px-2 py-0.5 text-right text-white"
+                    class="w-full rounded border border-white/20 bg-transparent px-2 py-0.5 text-right text-white outline-offset-2 outline-[#5e6ad2] transition-all duration-300
+focus-visible:outline-2"
                   />
                 </div>
               </div>
@@ -188,7 +194,8 @@
                 max="5"
                 step="0.1"
                 bind:value={editor.logoScale}
-                class="w-full"
+                class="w-full outline-offset-2 outline-[#5e6ad2] transition-all duration-300
+focus-visible:outline-2"
               />
             </div>
             <div>
@@ -202,7 +209,8 @@
                     bind:value={editor.logoRotate}
                     min="-180"
                     max="180"
-                    class="w-full rounded border border-white/20 bg-transparent px-2 py-1 text-right text-white"
+                    class="w-full rounded border border-white/20 bg-transparent px-2 py-1 text-right text-white outline-offset-2 outline-[#5e6ad2] transition-all duration-300
+focus-visible:outline-2"
                   />
                 </div>
               </div>
@@ -213,7 +221,8 @@
                 max="180"
                 step="1"
                 bind:value={editor.logoRotate}
-                class="w-full"
+                class="w-full outline-offset-2 outline-[#5e6ad2] transition-all duration-300
+focus-visible:outline-2"
               />
             </div>
             <div class="space-y-1.5 text-xs">
@@ -227,7 +236,8 @@
                   id="logo-x"
                   type="number"
                   bind:value={editor.logoX}
-                  class="w-full rounded border border-white/20 bg-transparent px-2 py-1 text-right text-white"
+                  class="w-full rounded border border-white/20 bg-transparent px-2 py-1 text-right text-white outline-offset-2 outline-[#5e6ad2] transition-all duration-300
+focus-visible:outline-2"
                 />
               </div>
               <div
@@ -240,7 +250,8 @@
                   id="logo-y"
                   type="number"
                   bind:value={editor.logoY}
-                  class="w-full rounded border border-white/20 bg-transparent px-2 py-1 text-right text-white"
+                  class="w-full rounded border border-white/20 bg-transparent px-2 py-1 text-right text-white outline-offset-2 outline-[#5e6ad2] transition-all duration-300
+focus-visible:outline-2"
                 />
               </div>
             </div>
@@ -251,8 +262,8 @@
                 editor.logoScale = 1;
                 editor.logoRotate = 0;
               }}
-              class="w-full rounded-md bg-white/10 py-2 text-center text-xs hover:bg-white/20"
-              >Сбросить трансформации</button
+              class="w-full rounded-md bg-white/10 py-2 text-center text-xs outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:bg-white/20
+focus-visible:outline-2">Сбросить трансформации</button
             >
           </div>
         </div>
@@ -264,13 +275,13 @@
     >
       <button
         onclick={handleClose}
-        class="rounded-lg bg-white/10 px-4 py-2 hover:bg-white/20"
-        >Отмена</button
+        class="rounded-lg bg-white/10 px-4 py-2 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:bg-white/20
+focus-visible:outline-2">Отмена</button
       >
       <button
         onclick={handleSave}
-        class="rounded-lg bg-[#5e6ad2] px-4 py-2 hover:bg-[#5058b8]"
-        >Сохранить и добавить</button
+        class="rounded-lg bg-[#5e6ad2] px-4 py-2 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:bg-[#5058b8]
+focus-visible:outline-2">Сохранить и добавить</button
       >
     </footer>
   </div>
