@@ -17,7 +17,7 @@ function determineAssetsToDownload({
   allAssets.logos.forEach((logo) => {
     defaultList.push({
       id: logo.id,
-      formats: [logo.extension, 'png'],
+      formats: [logo.extension, 'png', 'jpg', 'webp'],
       assetType: 'logo',
     });
   });
@@ -28,17 +28,45 @@ function determineAssetsToDownload({
       assetType: 'logo',
     });
   });
-  customPatterns.forEach((pattern) => {
-    defaultList.push({
-      id: pattern.id,
-      formats: ['svg', 'png'],
-      assetType: 'pattern',
+  if (customPatterns.length > 0) {
+    customPatterns.forEach((pattern) => {
+      defaultList.push({
+        id: pattern.id,
+        formats: ['svg', 'png', 'jpg', 'webp'],
+        assetType: 'pattern',
+      });
     });
-  });
+  } else if (allAssets.patterns.length > 0) {
+    const defaultPatternTemplate = allAssets.patterns[0];
+    const defaultPatternColors = allAssets.colors[0].items;
+
+    const defaultPattern = {
+      id: `${defaultPatternTemplate.id}-default`,
+      baseId: defaultPatternTemplate.id,
+      basePatternUrl: defaultPatternTemplate.url,
+      patternColor: defaultPatternColors[0].hex,
+      backgroundColor: defaultPatternColors[1].hex,
+      isDefault: true,
+    };
+
+    defaultList.push({
+      id: defaultPattern.id,
+      formats: ['svg', 'png', 'jpg', 'webp'],
+      assetType: 'pattern',
+      patternData: defaultPattern,
+    });
+  }
   allAssets.videos.forEach((video) => {
+    const videoFormatsToDownload = video.formats.flatMap((formatInfo) =>
+      Object.keys(formatInfo.urls).map((type) => ({
+        ratio: formatInfo.ratio,
+        type: type,
+      })),
+    );
+
     defaultList.push({
       id: video.id,
-      formats: video.formats.map((f) => f.ratio),
+      formats: videoFormatsToDownload,
       assetType: 'video',
     });
   });
@@ -151,8 +179,8 @@ async function processLogo(assetItem, { allAssets, customAssets, zipFolders }) {
 }
 
 async function processPattern(assetItem, { customPatterns, zipFolders }) {
-  const { id, formats } = assetItem;
-  const pattern = customPatterns.find((p) => p.id === id);
+  const { id, formats, patternData } = assetItem;
+  const pattern = patternData || customPatterns.find((p) => p.id === id);
   if (!pattern) return;
 
   try {

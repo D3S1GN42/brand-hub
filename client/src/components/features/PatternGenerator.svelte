@@ -77,7 +77,10 @@
         {#each brandColors.flatMap((g) => g.items) as color (color.hex)}
           <button
             onclick={() => (patternColor = color.hex)}
-            class="h-8 w-8 rounded-full border-2 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95"
+            class="h-8 w-8 rounded-full border-2 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {patternColor ===
+            color.hex
+              ? 'border-[#5e6ad2]'
+              : ''}"
             style="background-color: {color.hex};"
             aria-label="Выбрать цвет {color.name || color.hex}"
           ></button>
@@ -96,9 +99,10 @@
       <div class="flex flex-wrap items-center gap-2">
         <button
           onclick={() => (backgroundColor = 'transparent')}
-          class="relative h-8 w-8 overflow-hidden rounded-full border-2 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95"
-          class:border-white={backgroundColor === 'transparent'}
-          class:border-transparent={backgroundColor !== 'transparent'}
+          class="relative h-8 w-8 overflow-hidden rounded-full border-2 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {backgroundColor ===
+          'transparent'
+            ? 'border-[#5e6ad2]'
+            : ''}"
           style="background: repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%) 50% / 10px 10px;"
           aria-label="Выбрать прозрачный фон"
           title="Прозрачный фон"
@@ -108,7 +112,10 @@
         {#each brandColors.flatMap((g) => g.items) as color (color.hex)}
           <button
             onclick={() => (backgroundColor = color.hex)}
-            class="h-8 w-8 rounded-full border-2 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95"
+            class="h-8 w-8 rounded-full border-2 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {backgroundColor ===
+            color.hex
+              ? 'border-[#5e6ad2]'
+              : ''}"
             style="background-color: {color.hex};"
             aria-label="Выбрать цвет фона {color.name || color.hex}"
           ></button>
