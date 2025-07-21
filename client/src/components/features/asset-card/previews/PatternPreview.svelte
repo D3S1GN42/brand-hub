@@ -2,7 +2,7 @@
   let { pattern } = $props();
 
   const previewStyle = $derived(
-    `background-image: url('${pattern.dataUrl}'); background-size: contain;`,
+    `background-image: url('${pattern.dataUrl}'); background-size: contain; background-position: center; background-repeat: no-repeat;`,
   );
 </script>
 
