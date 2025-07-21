@@ -17,7 +17,7 @@
   <div class="mt-auto flex flex-col gap-2 text-xs">
     <a
       href="mailto:{contact.email}"
-      class="flex items-center gap-2 text-white/80 hover:text-white"
+      class="flex items-center gap-2 text-white/80 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:text-white focus-visible:outline-2"
     >
       <Icon name="email" />
       <span>{contact.email}</span>
@@ -27,7 +27,7 @@
         href="https://t.me/{contact.telegram}"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center gap-2 text-white/80 hover:text-white"
+        class="flex items-center gap-2 text-white/80 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:text-white focus-visible:outline-2"
       >
         <Icon name="telegram" />
         <span>@{contact.telegram}</span>
