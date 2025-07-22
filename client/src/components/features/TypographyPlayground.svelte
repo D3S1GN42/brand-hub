@@ -33,18 +33,16 @@
 <div class="flex flex-col gap-8">
   <textarea
     bind:value={inputText}
-    class="min-h-32 w-full resize-y rounded-lg bg-white/10 p-4 text-base text-white focus:outline-none focus:ring-2 focus:ring-[#FFA676]"
+    class="focus:ring-accent text-font-dark min-h-32 w-full resize-y rounded-lg p-4 text-base ring-1 ring-black/50 focus:outline-none focus:ring-2"
     placeholder="Введите текст для предпросмотра типографики..."
     aria-label="Текст для предпросмотра типографики"
     id="typography-input"
   ></textarea>
 
   {#each styles as style (style.id)}
-    <div class="flex flex-col gap-4 rounded-lg bg-white/5 p-6 shadow-inner">
-      <h3 class="text-lg font-semibold text-white/80">{style.name}</h3>
-      <div
-        class="max-w-full overflow-hidden rounded-md bg-black/20 py-4 sm:px-4"
-      >
+    <div class="flex flex-col gap-4 rounded-lg p-6 ring-1 ring-black/50">
+      <h3 class="text-font-dark/80 text-lg font-semibold">{style.name}</h3>
+      <div class="max-w-full overflow-hidden rounded-md py-4 sm:px-4">
         <p
           class={style.className}
           style="font-family: {style.properties['font-family'].css}"
@@ -55,7 +53,7 @@
 
       <details class="text-xs">
         <summary
-          class="cursor-pointer font-medium text-white/80 hover:text-white"
+          class="text-font-dark/80 hover:text-font-dark cursor-pointer font-medium"
         >
           Показать CSS Свойства
         </summary>
@@ -66,10 +64,11 @@
             <div class="flex flex-col gap-1.5">
               {#each Object.entries(style.properties) as [prop, valueObj] (prop)}
                 <div class="flex items-start">
-                  <span class="w-28 shrink-0 font-mono text-white/50"
+                  <span class="text-font-dark/50 w-28 shrink-0 font-mono"
                     >{prop}:</span
                   >
-                  <span class="flex-grow break-words font-mono text-white/90"
+                  <span
+                    class="text-font-dark/90 flex-grow break-words font-mono"
                     >{valueObj.display};</span
                   >
                 </div>
@@ -78,7 +77,7 @@
           </div>
           <button
             onclick={() => handleCopyClick(style)}
-            class="mt-2 flex w-full max-w-xs items-center justify-center gap-2 rounded-md bg-white/10 px-3 py-2 text-center text-white/80 transition-colors hover:bg-white/20"
+            class="text-font-dark/80 mt-2 flex w-full max-w-xs items-center justify-center gap-2 rounded-md bg-black/10 px-3 py-2 text-center transition-all duration-300 hover:bg-black/20 active:scale-95 active:duration-75"
           >
             {copiedState[style.id] ? 'Скопировано!' : 'Копировать CSS'}
           </button>

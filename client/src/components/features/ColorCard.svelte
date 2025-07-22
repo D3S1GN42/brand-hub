@@ -124,10 +124,10 @@
   onkeydown={handleKeyDown}
   class="{getLumaClass(
     color.hex,
-    'text-black',
-    'text-white',
-  )} group relative flex aspect-square w-full cursor-pointer touch-pan-y select-none flex-col justify-between rounded-lg border border-white/10 p-4 text-left outline-offset-2 transition-all
-  duration-300 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-[#FFA676] active:scale-95 active:duration-75"
+    'text-font-dark',
+    'text-font-light',
+  )} focus-visible:outline-accent group relative flex aspect-square w-full cursor-pointer touch-pan-y select-none flex-col justify-between rounded-lg border border-black/10 p-4 text-left outline-offset-2
+  transition-all duration-300 hover:-translate-y-1 focus-visible:outline-2 active:scale-95 active:duration-75"
   class:exploded
   style:background-color={color.hex}
   title="Нажмите, чтобы скопировать. Свайпните, чтобы изменить формат."
@@ -203,7 +203,7 @@
       class="absolute inset-0 z-10 grid place-items-center rounded-lg bg-black/70 backdrop-blur-sm"
       aria-live="polite"
     >
-      <span class="font-bold text-white">Скопировано!</span>
+      <span class="text-font-dark font-bold">Скопировано!</span>
     </div>
   {/if}
 
@@ -211,7 +211,7 @@
     <div
       class="animation-explode absolute inset-0 z-30 grid place-items-center rounded-lg bg-red-800/70 backdrop-blur-sm"
     >
-      <span class="animate-pulse text-2xl font-bold text-white">BOOM!</span>
+      <span class="text-font-dark animate-pulse text-2xl font-bold">BOOM!</span>
     </div>
   {/if}
 </div>

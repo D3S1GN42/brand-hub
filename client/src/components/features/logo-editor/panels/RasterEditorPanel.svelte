@@ -261,7 +261,7 @@
 >
   <canvas
     bind:this={canvasElement}
-    class="h-full w-full border border-dashed border-white/20"
+    class="h-full w-full border border-dashed border-black/20"
     style="background-color: {logo?.background};"
     width={editor.canvasWidth * dpr}
     height={editor.canvasHeight * dpr}
@@ -289,27 +289,27 @@
     onpanstart={handleResizeStart}
     onpan={(e) => handleResize(e, 'top')}
     onpanend={handleResizeEnd}
-    class="absolute -top-1 left-1/2 h-2 w-16 -translate-x-1/2 cursor-ns-resize rounded-full bg-[#FFA676]"
+    class="bg-accent absolute -top-1 left-1/2 h-2 w-16 -translate-x-1/2 cursor-ns-resize rounded-full"
   ></div>
   <div
     use:gestures
     onpanstart={handleResizeStart}
     onpan={(e) => handleResize(e, 'right')}
     onpanend={handleResizeEnd}
-    class="absolute -right-1 top-1/2 h-16 w-2 -translate-y-1/2 cursor-ew-resize rounded-full bg-[#FFA676]"
+    class="bg-accent absolute -right-1 top-1/2 h-16 w-2 -translate-y-1/2 cursor-ew-resize rounded-full"
   ></div>
   <div
     use:gestures
     onpanstart={handleResizeStart}
     onpan={(e) => handleResize(e, 'bottom')}
     onpanend={handleResizeEnd}
-    class="absolute -bottom-1 left-1/2 h-2 w-16 -translate-x-1/2 cursor-ns-resize rounded-full bg-[#FFA676]"
+    class="bg-accent absolute -bottom-1 left-1/2 h-2 w-16 -translate-x-1/2 cursor-ns-resize rounded-full"
   ></div>
   <div
     use:gestures
     onpanstart={handleResizeStart}
     onpan={(e) => handleResize(e, 'left')}
     onpanend={handleResizeEnd}
-    class="absolute -left-1 top-1/2 h-16 w-2 -translate-y-1/2 cursor-ew-resize rounded-full bg-[#FFA676]"
+    class="bg-accent absolute -left-1 top-1/2 h-16 w-2 -translate-y-1/2 cursor-ew-resize rounded-full"
   ></div>
 </div>

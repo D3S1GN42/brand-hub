@@ -36,12 +36,12 @@
 
 {#if name === 'arrow-right'}
   <svg
-    class="h-5 w-5 text-white"
+    class="text-font-dark h-5 w-5"
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
   >
-    <g id="_x33_-Padlock" fill="white">
+    <g id="_x33_-Padlock" fill="#ffffff">
       <path
         d="m23.71 15.29-14-14c-.39-.39-1.02-.39-1.41 0s-.39 1.02 0 1.41l13.29 13.3-13.3 13.29c-.39.39-.39 1.02 0 1.41.2.2.45.3.71.3s.51-.1.71-.29l14-14c.39-.39.39-1.03 0-1.42z"
       />
@@ -51,12 +51,12 @@
 
 {#if name === 'arrow-left'}
   <svg
-    class="h-5 w-5 text-white"
+    class="text-font-dark h-5 w-5"
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
   >
-    <g id="_x33_-Padlock" fill="white">
+    <g id="_x33_-Padlock" fill="#ffffff">
       <path
         d="m10.41 16 13.3-13.29c.39-.39.39-1.02 0-1.41s-1.02-.39-1.41 0l-14 14c-.39.39-.39 1.02 0 1.41l14 14c.19.19.44.3.7.3s.51-.1.71-.29c.39-.39.39-1.02 0-1.41z"
       />
@@ -66,7 +66,7 @@
 
 {#if name === 'close'}
   <svg
-    class="h-5 w-5 text-white"
+    class="text-font-dark h-5 w-5"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px"
@@ -107,7 +107,7 @@
     x="0px"
     y="0px"
     viewBox="0 0 512 512"
-    style="enable-background:new 0 0 512 512; width: 16px; height: 16px; fill: white"
+    style="enable-background:new 0 0 512 512; width: 16px; height: 16px; fill: #444545"
     xml:space="preserve"
     ><g
       ><g
@@ -127,7 +127,7 @@
     x="0px"
     y="0px"
     viewBox="0 0 512 512"
-    style="enable-background:new 0 0 512 512; width: 16px; height: 16px; fill: white"
+    style="enable-background:new 0 0 512 512; width: 16px; height: 16px; fill: #444545"
     xml:space="preserve"
     ><g
       ><g

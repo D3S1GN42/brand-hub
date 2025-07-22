@@ -7,6 +7,6 @@
 </script>
 
 <div
-  class="h-full w-full border border-dashed border-white/20 ring-1 ring-black/10"
+  class="h-full w-full border border-dashed border-black/20 ring-1 ring-black/10"
   style={previewStyle}
 ></div>

@@ -32,7 +32,7 @@
   <div>
     <h3 class="text-xl font-semibold">{title}</h3>
     {#if description}
-      <p class="mt-1 max-w-2xl text-sm text-white/60">{description}</p>
+      <p class="text-font-dark/60 mt-1 max-w-2xl text-sm">{description}</p>
     {/if}
   </div>
   <div
@@ -61,9 +61,9 @@
     </div>
 
     <div
-      class="focus-visible:outline-offset-14 absolute bottom-0 top-0 flex w-1
-           cursor-ew-resize items-center justify-center
-           bg-white focus-visible:outline-2 focus-visible:outline-[#FFA676]"
+      class="focus-visible:outline-offset-14 focus-visible:outline-accent absolute bottom-0 top-0 flex
+           w-1 cursor-ew-resize items-center
+           justify-center bg-white focus-visible:outline-2"
       style="left: {sliderPosition}%;"
       role="slider"
       aria-valuemin="0"
@@ -77,7 +77,7 @@
         class="flex min-h-8 min-w-8 items-center justify-center rounded-full border-2 border-black/50 bg-white"
       >
         <svg
-          class="h-4 w-4 text-black"
+          class="text-font-dark h-4 w-4"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

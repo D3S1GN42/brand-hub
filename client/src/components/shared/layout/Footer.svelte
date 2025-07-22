@@ -2,9 +2,7 @@
   let { info } = $props();
 </script>
 
-<footer
-  class="border-t border-white/10 bg-[#08090a] py-8 text-sm text-white/60"
->
+<footer class="text-font-dark/60 bg-white py-8 text-sm shadow-2xl">
   <div class="container">
     <div
       class="flex flex-col items-center gap-6 md:justify-between lg:flex-row"
@@ -18,7 +16,7 @@
             href={info.companyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:text-white focus-visible:outline-2"
+            class="outline-accent hover:text-font-dark outline-offset-2 transition-all duration-300 focus-visible:outline-2"
             >{info.companyName}</a
           >. Все права защищены.
         </p>
@@ -27,7 +25,7 @@
             href={info.developer.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="font-semibold text-white/80 outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:text-white focus-visible:outline-2"
+            class="outline-accent text-font-dark/80 hover:text-font-dark font-semibold outline-offset-2 transition-all duration-300 focus-visible:outline-2"
             >{info.developer.name}</a
           >
         </p>
@@ -40,7 +38,7 @@
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:scale-110 focus-visible:outline-2"
+              class="outline-accent outline-offset-2 transition-all duration-300 hover:scale-110 focus-visible:outline-2"
               aria-label="Профиль в {social.name}"
             >
               <span class="capitalize">{social.name}</span>

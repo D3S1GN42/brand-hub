@@ -28,11 +28,11 @@
   }
 </script>
 
-<div class="flex flex-col gap-4 rounded-lg bg-white/5 p-4 shadow-inner">
-  <h3 class="text-lg font-semibold text-white/80">{video.title}</h3>
+<div class="flex flex-col gap-4 rounded-lg bg-white p-4 shadow-2xl">
+  <h3 class="text-font-dark/80 text-lg font-semibold">{video.title}</h3>
 
   <div
-    class="relative aspect-video w-full overflow-hidden rounded-md bg-black outline-[#FFA676] transition-all duration-300 has-[:focus-visible]:outline-2"
+    class="outline-accent relative aspect-video w-full overflow-hidden rounded-md bg-black transition-all duration-300 has-[:focus-visible]:outline-2"
   >
     {#if !isPlaying}
       <div class="h-full w-full">
@@ -71,7 +71,7 @@
   </div>
 
   <div class="flex flex-col gap-2">
-    <h4 class="text-sm font-medium text-white/70">
+    <h4 class="text-font-dark/70 text-sm font-medium">
       Выбрать форматы для скачивания:
     </h4>
     <div class="grid grid-cols-2 gap-2 text-xs sm:grid-cols-4">
@@ -80,7 +80,7 @@
           class="flex flex-col justify-between gap-1 rounded-md bg-white/10 p-2"
         >
           <div class="text-center font-semibold">{format.name}</div>
-          <div class="text-center text-white/50">{format.resolution}</div>
+          <div class="text-font-dark/50 text-center">{format.resolution}</div>
           <div class="mt-1 grid grid-cols-2 gap-1">
             {#each Object.keys(format.urls) as type (type)}
               {@const inputId = `${video.id}-${format.ratio}-${type}`}
@@ -102,8 +102,8 @@
                 />
                 <label
                   for={inputId}
-                  class="flex h-full cursor-pointer items-center justify-center rounded-sm p-1 text-center outline-offset-2 outline-[#FFA676] transition-all duration-300 group-has-[:focus-visible]:outline-2 {isSelected
-                    ? 'bg-[#FFA676]'
+                  class="outline-accent flex h-full cursor-pointer items-center justify-center rounded-sm p-1 text-center shadow-2xl outline-offset-2 transition-all duration-300 group-has-[:focus-visible]:outline-2 {isSelected
+                    ? 'bg-accent'
                     : 'bg-white/10 hover:bg-white/20'}"
                 >
                   {type.toUpperCase()}

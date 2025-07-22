@@ -29,9 +29,9 @@
 </script>
 
 <li
-  class="group relative aspect-[4/3] select-none overflow-hidden outline-offset-2 outline-[#FFA676] transition-all
-  duration-300 ease-in-out hover:scale-[1.02]
-  active:scale-[0.98] active:duration-75 has-[:focus-visible]:outline-2"
+  class="outline-accent group relative aspect-[4/3] select-none overflow-hidden shadow-2xl outline-offset-2
+  transition-all duration-300 ease-in-out
+  hover:scale-[1.02] active:scale-[0.98] active:duration-75 has-[:focus-visible]:outline-2"
   style="background-color: {asset.background};"
   role="option"
   aria-selected={checked}

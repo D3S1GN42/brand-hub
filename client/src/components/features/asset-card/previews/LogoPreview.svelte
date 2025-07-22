@@ -55,7 +55,7 @@
       class="pointer-events-none h-full w-full select-none object-contain"
     />
   {:else}
-    <div class="text-white/60">
+    <div class="text-font-dark/60">
       Неподдерживаемый формат логотипа: {asset.extension}
     </div>
   {/if}

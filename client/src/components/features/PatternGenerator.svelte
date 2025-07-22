@@ -60,9 +60,9 @@
         {#each patterns as p (p.id)}
           <button
             onclick={() => (selectedPattern = p)}
-            class="h-10 max-w-sm grow rounded-md border-2 bg-white/10 px-3 text-white/80 outline-offset-2 outline-[#FFA676] transition-all hover:bg-white/20 focus-visible:outline-2 active:scale-95 {selectedPattern ===
+            class="outline-accent text-font-dark/80 h-10 max-w-sm grow rounded-md border-2 bg-white/10 px-3 outline-offset-2 transition-all hover:bg-white/20 focus-visible:outline-2 active:scale-95 {selectedPattern ===
             p
-              ? 'border-[#FFA676]'
+              ? 'border-accent'
               : ''}"
           >
             {p.name}
@@ -77,9 +77,9 @@
         {#each brandColors.flatMap((g) => g.items) as color (color.hex)}
           <button
             onclick={() => (patternColor = color.hex)}
-            class="h-8 w-8 rounded-full border-2 outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {patternColor ===
+            class="outline-accent h-8 w-8 rounded-full border-2 outline-offset-2 transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {patternColor ===
             color.hex
-              ? 'border-[#FFA676]'
+              ? 'border-accent'
               : ''}"
             style="background-color: {color.hex};"
             aria-label="Выбрать цвет {color.name || color.hex}"
@@ -88,7 +88,7 @@
         <input
           type="color"
           bind:value={patternColor}
-          class="h-9 w-10 cursor-pointer appearance-none rounded-md border-none bg-transparent p-0 outline-offset-2 outline-[#FFA676] transition-all duration-300 focus-visible:outline-2"
+          class="outline-accent h-9 w-10 cursor-pointer appearance-none rounded-md border-none bg-transparent p-0 outline-offset-2 transition-all duration-300 focus-visible:outline-2"
           aria-label="Выбрать свой цвет для элементов"
         />
       </div>
@@ -99,9 +99,9 @@
       <div class="flex flex-wrap items-center gap-2">
         <button
           onclick={() => (backgroundColor = 'transparent')}
-          class="relative h-8 w-8 overflow-hidden rounded-full border-2 outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {backgroundColor ===
+          class="outline-accent relative h-8 w-8 overflow-hidden rounded-full border-2 outline-offset-2 transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {backgroundColor ===
           'transparent'
-            ? 'border-[#FFA676]'
+            ? 'border-accent'
             : ''}"
           style="background: repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%) 50% / 10px 10px;"
           aria-label="Выбрать прозрачный фон"
@@ -112,9 +112,9 @@
         {#each brandColors.flatMap((g) => g.items) as color (color.hex)}
           <button
             onclick={() => (backgroundColor = color.hex)}
-            class="h-8 w-8 rounded-full border-2 outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {backgroundColor ===
+            class="outline-accent h-8 w-8 rounded-full border-2 outline-offset-2 transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {backgroundColor ===
             color.hex
-              ? 'border-[#FFA676]'
+              ? 'border-accent'
               : ''}"
             style="background-color: {color.hex};"
             aria-label="Выбрать цвет фона {color.name || color.hex}"
@@ -123,7 +123,7 @@
         <input
           type="color"
           bind:value={backgroundColor}
-          class="h-9 w-10 cursor-pointer appearance-none rounded-md border-none bg-transparent p-0 outline-offset-2 outline-[#FFA676] transition-all duration-300 focus-visible:outline-2"
+          class="outline-accent h-9 w-10 cursor-pointer appearance-none rounded-md border-none bg-transparent p-0 outline-offset-2 transition-all duration-300 focus-visible:outline-2"
           aria-label="Выбрать свой цвет для фона"
         />
       </div>
@@ -131,14 +131,14 @@
 
     <button
       onclick={handleSave}
-      class="mt-2 w-full rounded-md bg-white/10 py-2 text-center font-semibold outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:bg-white/20 focus-visible:outline-2 active:scale-95 active:duration-75"
+      class="outline-accent mt-2 w-full rounded-md bg-white/10 py-2 text-center font-semibold outline-offset-2 ring-1 ring-black/50 transition-all duration-300 hover:bg-white/20 focus-visible:outline-2 active:scale-95 active:duration-75"
     >
       Добавить в загрузку
     </button>
   </div>
 
   <div
-    class="flex aspect-video w-full justify-center rounded-lg bg-white/5 p-4 shadow-inner"
+    class="flex aspect-video w-full justify-center rounded-lg bg-black/15 p-4 shadow-inner"
     aria-label="Превью сгенерированного паттерна"
   >
     <img

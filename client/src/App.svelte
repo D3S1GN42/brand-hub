@@ -93,7 +93,7 @@
 </script>
 
 <div
-  class="flex min-h-screen grow flex-col bg-[#1c1c1c] text-white"
+  class="bg-background text-font-dark flex min-h-screen grow flex-col"
   class:animate-rave={konamiActive}
   use:konami={activateRaveMode}
 >
@@ -102,33 +102,33 @@
       <span class="text-center">AdsCompass</span>
       <span class="text-center">Руководство по стилю</span>
     </h1>
-    <p class="rounded-2xl bg-white/10 px-6 py-1">Базовая версия</p>
+    <p class="rounded-2xl px-6 py-1 shadow-2xl">Базовая версия</p>
   </header>
 
   <div class="container sticky top-4 z-10 flex justify-center">
     <button
       type="button"
       class="
-		mt-3 rounded-lg bg-[#FFA676] px-6 py-3 font-semibold shadow-lg shadow-[#FFA676]/20
-		transition-all duration-300 ease-in-out
+		bg-accent shadow-accent/20 focus-visible:ring-accent active:bg-accent mt-3 rounded-lg px-6 py-3
+		font-semibold shadow-lg transition-all
+		duration-300
+		ease-in-out
 		hover:-translate-y-px
 		hover:bg-[#e09c78]
 		focus:outline-none
 		focus-visible:ring-2
-		focus-visible:ring-[#FFA676]
 		focus-visible:ring-offset-2
 		focus-visible:ring-offset-[#08090a]
 		active:translate-y-0
-		active:bg-[#434d9d]
 		active:duration-75
-        disabled:cursor-not-allowed disabled:bg-gray-500 disabled:hover:translate-y-0"
+        disabled:cursor-not-allowed disabled:bg-gray-100 disabled:hover:translate-y-0"
       onclick={handleDownload}
       disabled={isDownloading}
     >
       {#if isDownloading}
         <div class="flex items-center gap-2">
           <div
-            class="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"
+            class="h-5 w-5 animate-spin rounded-full border-2 border-black border-t-transparent"
           ></div>
           <span>Генерация архива...</span>
         </div>
@@ -252,10 +252,12 @@
           </ul>
         {:else}
           <div
-            class="rounded-lg border border-dashed border-white/20 px-4 py-10 text-center"
+            class="rounded-lg border border-dashed border-black/20 px-4 py-10 text-center"
           >
-            <p class="text-white/60">Вы еще не создали ни одной вариации.</p>
-            <p class="mt-1 text-sm text-white/40">
+            <p class="text-font-dark/60">
+              Вы еще не создали ни одной вариации.
+            </p>
+            <p class="text-font-dark/40 mt-1 text-sm">
               Нажмите на иконку кисти на любом логотипе, чтобы начать.
             </p>
           </div>

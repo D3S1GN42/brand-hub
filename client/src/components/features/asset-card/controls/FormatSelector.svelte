@@ -26,7 +26,7 @@
   const formatButtonClasses = $derived((format, index) => {
     const isChecked = selectedFormats.includes(format);
     const totalFormats = availableFormats.length;
-    let classes = `flex-1 text-center py-1.5 px-3 text-xs font-semibold whitespace-nowrap cursor-pointer transition-all duration-300 ${isChecked ? 'bg-white/90 text-black' : 'bg-black/40 text-white/70 hover:bg-black/60'}`;
+    let classes = `flex-1 text-center py-1.5 px-3 text-xs font-semibold whitespace-nowrap cursor-pointer transition-all duration-300 ${isChecked ? 'bg-white/90 text-font-dark' : 'bg-white/10 text-font-dark/70 hover:bg-white/20'}`;
     if (totalFormats === 1) classes += ' rounded-full';
     else {
       if (index === 0) classes += ' rounded-l-full';
