@@ -1,6 +1,6 @@
 <script>
-  import { getLumaClass } from '../../../lib/utils/color';
-  import Icon from '../../shared/ui/Icon.svelte';
+  import { getLumaClass } from '../../lib/utils/color.js';
+  import Icon from '../shared/ui/Icon.svelte';
 
   let {
     asset,

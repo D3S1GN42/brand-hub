@@ -44,11 +44,11 @@
   onMount(async () => {
     console.log(
       '%cТы нашел это!🧐',
-      'color: #5e6ad2; font-size: 20px; font-weight: bold;',
+      'color: #FFA676; font-size: 20px; font-weight: bold;',
     );
     console.log(
       '%cОтличная работа, разработчик!',
-      'color: #5e6ad2; font-size: 16px; font-weight: semibold;',
+      'color: #FFA676; font-size: 16px; font-weight: semibold;',
     );
     console.log('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
 
@@ -93,7 +93,7 @@
 </script>
 
 <div
-  class="flex min-h-screen grow flex-col bg-[#08090a] text-white"
+  class="flex min-h-screen grow flex-col bg-[#1c1c1c] text-white"
   class:animate-rave={konamiActive}
   use:konami={activateRaveMode}
 >
@@ -109,13 +109,13 @@
     <button
       type="button"
       class="
-		mt-3 rounded-lg bg-[#5e6ad2] px-6 py-3 font-semibold shadow-lg shadow-[#5e6ad2]/20
+		mt-3 rounded-lg bg-[#FFA676] px-6 py-3 font-semibold shadow-lg shadow-[#FFA676]/20
 		transition-all duration-300 ease-in-out
 		hover:-translate-y-px
-		hover:bg-[#5058b8]
+		hover:bg-[#e09c78]
 		focus:outline-none
 		focus-visible:ring-2
-		focus-visible:ring-[#5e6ad2]
+		focus-visible:ring-[#FFA676]
 		focus-visible:ring-offset-2
 		focus-visible:ring-offset-[#08090a]
 		active:translate-y-0

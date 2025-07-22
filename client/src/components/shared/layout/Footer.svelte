@@ -18,7 +18,7 @@
             href={info.companyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:text-white focus-visible:outline-2"
+            class="outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:text-white focus-visible:outline-2"
             >{info.companyName}</a
           >. Все права защищены.
         </p>
@@ -27,7 +27,7 @@
             href={info.developer.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="font-semibold text-white/80 outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:text-white focus-visible:outline-2"
+            class="font-semibold text-white/80 outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:text-white focus-visible:outline-2"
             >{info.developer.name}</a
           >
         </p>
@@ -40,7 +40,7 @@
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="outline-offset-2 outline-[#5e6ad2] transition-all duration-300 hover:scale-110 focus-visible:outline-2"
+              class="outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:scale-110 focus-visible:outline-2"
               aria-label="Профиль в {social.name}"
             >
               <span class="capitalize">{social.name}</span>

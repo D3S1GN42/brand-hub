@@ -33,7 +33,7 @@
 <div class="flex flex-col gap-8">
   <textarea
     bind:value={inputText}
-    class="min-h-32 w-full resize-y rounded-lg bg-white/10 p-4 text-base text-white focus:outline-none focus:ring-2 focus:ring-[#5e6ad2]"
+    class="min-h-32 w-full resize-y rounded-lg bg-white/10 p-4 text-base text-white focus:outline-none focus:ring-2 focus:ring-[#FFA676]"
     placeholder="Введите текст для предпросмотра типографики..."
     aria-label="Текст для предпросмотра типографики"
     id="typography-input"

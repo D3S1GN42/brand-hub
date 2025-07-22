@@ -63,7 +63,7 @@
     <div
       class="focus-visible:outline-offset-14 absolute bottom-0 top-0 flex w-1
            cursor-ew-resize items-center justify-center
-           bg-white focus-visible:outline-2 focus-visible:outline-[#5e6ad2]"
+           bg-white focus-visible:outline-2 focus-visible:outline-[#FFA676]"
       style="left: {sliderPosition}%;"
       role="slider"
       aria-valuemin="0"

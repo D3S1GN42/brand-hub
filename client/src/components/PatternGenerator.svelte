@@ -60,7 +60,7 @@
         {#each patterns as p (p.id)}
           <button
             onclick={() => (selectedPattern = p)}
-            class="h-10 max-w-sm grow rounded-md border-2 bg-white/10 px-3 text-white/80 outline-offset-2 outline-[#FFA676] transition-all hover:bg-white/20 focus-visible:outline-2 active:scale-95 {selectedPattern ===
+            class="h-10 max-w-sm grow rounded-md border-2 bg-white/10 px-3 text-white/80 transition-all hover:bg-white/20 active:scale-95 {selectedPattern ===
             p
               ? 'border-[#FFA676]'
               : ''}"
@@ -77,10 +77,7 @@
         {#each brandColors.flatMap((g) => g.items) as color (color.hex)}
           <button
             onclick={() => (patternColor = color.hex)}
-            class="h-8 w-8 rounded-full border-2 outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {patternColor ===
-            color.hex
-              ? 'border-[#FFA676]'
-              : ''}"
+            class="h-8 w-8 rounded-full border-2 transition-transform hover:scale-110 active:scale-95"
             style="background-color: {color.hex};"
             aria-label="Выбрать цвет {color.name || color.hex}"
           ></button>
@@ -88,7 +85,7 @@
         <input
           type="color"
           bind:value={patternColor}
-          class="h-9 w-10 cursor-pointer appearance-none rounded-md border-none bg-transparent p-0 outline-offset-2 outline-[#FFA676] transition-all duration-300 focus-visible:outline-2"
+          class="h-9 w-10 cursor-pointer appearance-none rounded-md border-none bg-transparent p-0"
           aria-label="Выбрать свой цвет для элементов"
         />
       </div>
@@ -99,10 +96,9 @@
       <div class="flex flex-wrap items-center gap-2">
         <button
           onclick={() => (backgroundColor = 'transparent')}
-          class="relative h-8 w-8 overflow-hidden rounded-full border-2 outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {backgroundColor ===
-          'transparent'
-            ? 'border-[#FFA676]'
-            : ''}"
+          class="relative h-8 w-8 overflow-hidden rounded-full border-2 transition-transform hover:scale-110 active:scale-95"
+          class:border-white={backgroundColor === 'transparent'}
+          class:border-transparent={backgroundColor !== 'transparent'}
           style="background: repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%) 50% / 10px 10px;"
           aria-label="Выбрать прозрачный фон"
           title="Прозрачный фон"
@@ -112,10 +108,7 @@
         {#each brandColors.flatMap((g) => g.items) as color (color.hex)}
           <button
             onclick={() => (backgroundColor = color.hex)}
-            class="h-8 w-8 rounded-full border-2 outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:scale-110 focus-visible:outline-2 active:scale-95 {backgroundColor ===
-            color.hex
-              ? 'border-[#FFA676]'
-              : ''}"
+            class="h-8 w-8 rounded-full border-2 transition-transform hover:scale-110 active:scale-95"
             style="background-color: {color.hex};"
             aria-label="Выбрать цвет фона {color.name || color.hex}"
           ></button>
@@ -123,7 +116,7 @@
         <input
           type="color"
           bind:value={backgroundColor}
-          class="h-9 w-10 cursor-pointer appearance-none rounded-md border-none bg-transparent p-0 outline-offset-2 outline-[#FFA676] transition-all duration-300 focus-visible:outline-2"
+          class="h-9 w-10 cursor-pointer appearance-none rounded-md border-none bg-transparent p-0"
           aria-label="Выбрать свой цвет для фона"
         />
       </div>
@@ -131,7 +124,7 @@
 
     <button
       onclick={handleSave}
-      class="mt-2 w-full rounded-md bg-white/10 py-2 text-center font-semibold outline-offset-2 outline-[#FFA676] transition-all duration-300 hover:bg-white/20 focus-visible:outline-2 active:scale-95 active:duration-75"
+      class="mt-2 w-full rounded-md bg-white/10 py-2 text-center font-semibold transition-colors duration-300 hover:bg-white/20"
     >
       Добавить в загрузку
     </button>

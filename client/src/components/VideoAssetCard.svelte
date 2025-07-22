@@ -1,5 +1,5 @@
 <script>
-  import Icon from '../shared/ui/Icon.svelte';
+  import Icon from './shared/ui/Icon.svelte';
 
   let { video, selectedFormats = [], onToggle } = $props();
 
@@ -31,9 +31,7 @@
 <div class="flex flex-col gap-4 rounded-lg bg-white/5 p-4 shadow-inner">
   <h3 class="text-lg font-semibold text-white/80">{video.title}</h3>
 
-  <div
-    class="relative aspect-video w-full overflow-hidden rounded-md bg-black outline-[#FFA676] transition-all duration-300 has-[:focus-visible]:outline-2"
-  >
+  <div class="relative aspect-video w-full overflow-hidden rounded-md bg-black">
     {#if !isPlaying}
       <div class="h-full w-full">
         <img
@@ -102,7 +100,7 @@
                 />
                 <label
                   for={inputId}
-                  class="flex h-full cursor-pointer items-center justify-center rounded-sm p-1 text-center outline-offset-2 outline-[#FFA676] transition-all duration-300 group-has-[:focus-visible]:outline-2 {isSelected
+                  class="flex h-full cursor-pointer items-center justify-center rounded-sm p-1 text-center transition-colors {isSelected
                     ? 'bg-[#FFA676]'
                     : 'bg-white/10 hover:bg-white/20'}"
                 >
